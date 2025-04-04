@@ -2,7 +2,6 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# 复制所需文件到容器中
 COPY ./requirements.txt /app
 
 RUN pip install --no-cache-dir -r requirements.txt
@@ -12,8 +11,8 @@ ENV TOOLS_CODE_EXECUTION_ENABLED=false
 ENV IMAGE_MODELS='["gemini-2.0-flash-exp"]'
 ENV SEARCH_MODELS='["gemini-2.0-flash-exp","gemini-2.0-pro-exp"]'
 
-# Expose port
+# Hugging Face Spaces uses port 7860
 EXPOSE 7860
 
-# Run the application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+# Use 7860 port for Hugging Face
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
