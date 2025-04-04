@@ -1,0 +1,7 @@
+services:
+  gemini-balance:
+    build: .
+    ports:
+      - "50008:8000"
+    env_file:
+      - .env
